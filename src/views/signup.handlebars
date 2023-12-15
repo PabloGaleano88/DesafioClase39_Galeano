@@ -1,0 +1,43 @@
+<div class="signup_form">
+    <div class="border_form">
+
+        <form action="http://localhost:8080/api/signup" method="post">
+            <h1 class="h3 mb-3 fw-normal">Registro</h1>
+
+            <div class="form-floating">
+                <input type="text" name="first_name" class="form-control" placeholder="Nombre">
+                <label for="floatingInput">Nombre</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" name="last_name" class="form-control" placeholder="Apellido">
+                <label for="floatingInput">Apellido</label>
+            </div>
+            <div class="form-floating">
+                <input type="email" name="email" class="form-control" placeholder="E-mail">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="number" name="age" class="form-control" placeholder="Edad">
+                <label for="floatingInput">Edad</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="div_line">
+                <div>
+                    <a class="already_have" href="http://localhost:8080/login">Ya tengo una cuenta</a>
+                </div>
+                <div class="div_line">
+                </div>
+            </div>
+            <button class="btn btn-primary btn-warning w-100 py-2" type="submit">Sign up</button>
+            <p class="mt-5 mb-3 text-body-secondary">&copy; Pablo Galeano - CoderHouse - 2023</p>
+        </form>
+        </main>
+        {{!--
+        <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script> --}}
+    </div>
+</div>

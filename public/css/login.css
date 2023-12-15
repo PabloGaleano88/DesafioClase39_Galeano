@@ -1,0 +1,61 @@
+.login_form {
+    display: flex;
+    justify-content: center;
+}
+
+div.row {
+    --bs-gutter-x: 0rem;
+}
+
+form {
+    max-width: 500px;
+}
+
+.border_form {
+    justify-content: center;
+    width: 500px;
+    margin-top: 50px;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+}
+
+.h3 {
+    color: white
+}
+
+.div_line {
+    margin-top: 15px;
+}
+
+.passport_logo {
+    margin-right: 5px;
+    max-height: 25px;
+}
+
+.github_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 5px;
+    background-color: #6e5494;
+    border-radius: 5px;
+    color: white;
+}
+
+.github_login:hover {
+    background-color: #75668c;
+}
+
+.github_logo {
+    margin-right: 5px;
+    max-height: 30px;
+}
+
+.radiobutton_name{
+    margin-left:5px;
+    color:white;
+}

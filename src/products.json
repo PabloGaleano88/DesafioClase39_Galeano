@@ -1,0 +1,132 @@
+[
+	{
+		"id": 0,
+		"title": "Teclado Mecánico",
+		"description": "Teclado mecánico de alta calidad para una experiencia de escritura excepcional.",
+		"price": 89.99,
+		"status": true,
+		"thumbnail": [
+			"./public/teclado.jpg"
+		],
+		"code": "KBMEC001",
+		"stock": 50,
+		"category": "Periféricos"
+	},
+	{
+		"id": 1,
+		"title": "Mouse Óptico",
+		"description": "Mouse óptico ergonómico con botones programables para una mayor productividad.",
+		"price": 24.99,
+		"status": true,
+		"thumbnail": [
+			"./public/mouse.jpg"
+		],
+		"code": "MOPT002",
+		"stock": 75,
+		"category": "Periféricos"
+	},
+	{
+		"id": 2,
+		"title": "Monitor UltraWide",
+		"description": "Monitor ultra ancho de 34 pulgadas con resolución QHD para una experiencia inmersiva.",
+		"price": 399.99,
+		"status": true,
+		"thumbnail": [
+			"./public/monitor.jpg"
+		],
+		"code": "MONUW003",
+		"stock": 30,
+		"category": "Monitores"
+	},
+	{
+		"id": 3,
+		"title": "Auriculares Bluetooth",
+		"description": "Auriculares inalámbricos con cancelación de ruido para disfrutar de la música sin distracciones.",
+		"price": 129.99,
+		"status": true,
+		"thumbnail": [
+			"./public/auriculares.jpg"
+		],
+		"code": "AURBT004",
+		"stock": 20,
+		"category": "Audio"
+	},
+	{
+		"id": 4,
+		"title": "Laptop Ultrabook",
+		"description": "Laptop ultradelgada y ligera con potentes capacidades de rendimiento.",
+		"price": 999.99,
+		"status": true,
+		"thumbnail": [
+			"./public/laptop.jpg"
+		],
+		"code": "LTULT005",
+		"stock": 15,
+		"category": "Laptops"
+	},
+	{
+		"id": 5,
+		"title": "Impresora Multifunción",
+		"description": "Impresora que imprime, escanea y copia con alta calidad y rapidez.",
+		"price": 149.99,
+		"status": true,
+		"thumbnail": [
+			"./public/impresora.jpg"
+		],
+		"code": "IMPMULTI006",
+		"stock": 40,
+		"category": "Impresoras"
+	},
+	{
+		"id": 6,
+		"title": "Cámara DSLR",
+		"description": "Cámara réflex digital de alta gama con lentes intercambiables para capturar momentos excepcionales.",
+		"price": 799.99,
+		"status": true,
+		"thumbnail": [
+			"./public/camara.jpg"
+		],
+		"code": "CAMDSLR007",
+		"stock": 10,
+		"category": "Cámaras"
+	},
+	{
+		"id": 7,
+		"title": "Altavoz Bluetooth",
+		"description": "Altavoz portátil con conectividad Bluetooth para disfrutar de un sonido potente en cualquier lugar.",
+		"price": 59.99,
+		"status": true,
+		"thumbnail": [
+			"./public/altavoz.jpg"
+		],
+		"code": "ALTBGHT008",
+		"stock": 55,
+		"category": "Audio"
+	},
+	{
+		"id": 8,
+		"title": "Smartphone Android",
+		"description": "Smartphone con sistema Android, cámara de alta resolución y rendimiento fluido.",
+		"price": 299.99,
+		"status": true,
+		"thumbnail": [
+			"./public/smartphone.jpg"
+		],
+		"code": "PHNAND009",
+		"stock": 25,
+		"category": "Smartphones"
+	},
+	{
+		"id": 9,
+		"title": "Tablet iOS",
+		"description": "Tablet con sistema operativo iOS, pantalla retina y acceso a una amplia variedad de aplicaciones.",
+		"price": 499.99,
+		"status": true,
+		"thumbnail": [
+			"./public/tablet.jpg"
+		],
+		"code": "TABIOS010",
+		"stock": 18,
+		"category": "Tablets"
+	}
+]

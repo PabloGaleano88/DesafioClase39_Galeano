@@ -1,0 +1,61 @@
+<div class="login_form">
+    <div class="border_form">
+        <form id="log_in_form" action="http://localhost:8080/api/login" method="post">
+            <h1 class="h3 mb-3 fw-normal">Log in</h1>
+            <div class="form-floating">
+                <input type="email" name="email" class="form-control" placeholder="E-mail">
+                <label for="floatingInput">E-mail</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="div_line">
+            </div>
+            <div class="div_line">
+                <a  id="forgot-password" class="link" href="">Olvidé mi contraseña</a>
+            </div>
+            <div>
+                <input type="radio" name="frmact" value="http://localhost:8080/api/login" checked="checked"
+                    id="session-radio" /><label class="radiobutton_name" for="session_local">Session</label>
+            </div>
+            <input type="radio" name="frmact" value="http://localhost:8080/api/session/login" id="jwt-radio" /><label
+                class="radiobutton_name" for="JWT">JWT</label>
+            <button class="btn btn-primary btn-warning w-100 py-2" type="submit"><svg class="passport_logo" role="img"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <title>Passport</title>
+                    <path
+                        d="M11.875 0A9.6 9.6 0 0 0 2.4 9.475h4.8A4.81 4.81 0 0 1 11.875 4.8zm.25 0v4.8A4.81 4.81 0 0 1 16.8 9.475h4.8A9.6 9.6 0 0 0 12.125 0zM2.4 9.725V24H12v-4.8H7.2V9.724zm9.6 9.474a9.599 9.599 0 0 0 9.6-9.474h-4.8A4.807 4.807 0 0 1 12 14.4z" />
+                </svg>
+                Log in</button>
+
+            <div class="div_line"></div>
+            <a class="github_login" href="http://localhost:8080/api/github">
+                <svg class="github_logo" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <title>GitHub</title>
+                    <path
+                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>Ingresar con GitHub
+            </a>
+
+            <div class="div_line"> </div>
+
+
+
+            <div>
+                <a class="link" href="http://localhost:8080/signup">Regístrate</a>
+            </div>
+            <p class="mt-5 mb-3 text-body-secondary">&copy; Pablo Galeano - CoderHouse - 2023</p>
+        </form>
+        </main>
+    </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{#if login_fail }}
+<script src="/static/js/loginfail.js"></script>
+{{/if}}
+<script src="/static/js/login.js"></script>

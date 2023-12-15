@@ -1,0 +1,22 @@
+<div id="contenido">
+    {{#each products}}
+    <div class="card" style="width: 18rem;">
+        <div class="image-container">
+        <img src="/static/thumbnails/{{this.thumbnail}}" class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <h6>U$D: {{this.price}}</h6>
+            <p class="card-text">{{this.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Stock: {{this.stock}}</li>
+            <li class="list-group-item">Category: {{this.category}}</li>
+            <li class="list-group-item">Code: {{this.code}}</li>
+            <li class="list-group-item">Status: {{this.status}}</li>
+            <li class="list-group-item">ID: {{this._id}}</li>
+            <li class="list-group-item">{{this.thumbnail}}</li>
+        </ul>
+    </div>
+    {{/each}}
+</div>

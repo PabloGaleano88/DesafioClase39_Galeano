@@ -1,0 +1,25 @@
+.signup_form{
+    display: flex;
+    justify-content: center;
+}
+div.row{
+    --bs-gutter-x: 0rem;
+}
+form{
+    max-width: 500px;
+}
+.border_form{
+justify-content: center;
+width: 500px;
+margin-top: 50px;
+}
+.h3{
+    color:white
+}
+.already_have{
+    display:flex;
+    justify-content: center;
+}
+.div_line{
+    margin-top: 15px;
+}

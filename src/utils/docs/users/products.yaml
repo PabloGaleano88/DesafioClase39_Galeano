@@ -1,0 +1,11 @@
+paths:
+  /api/products:
+    get:
+      summary: Obtiene todos los productos de la base de datos.
+      tags: 
+        - Products
+      responses:
+        "200":
+          description: Los productos fueron obtenidos satisfactoriamente
+        "500":
+          description: Algo falló en la obtención de productos

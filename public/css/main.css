@@ -1,0 +1,19 @@
+body{
+    margin-top:40px;
+    margin-bottom: 45px;
+    background-color: rgb(0, 0, 0);
+}
+header{
+    width: 100%;
+    color:rgb(255, 255, 255);
+    background-color: rgb(40, 40, 40);
+    position: fixed;
+    top:0;
+    z-index: 100;
+}
+h2{
+    margin-left: 5px;
+}
+header span{
+    color:rgb(249, 197, 15);
+}

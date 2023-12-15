@@ -1,0 +1,14 @@
+h1{
+    color:white
+}
+.go_to_home {
+    z-index: 100;
+    height: 25px;
+    position: fixed;
+    top: 0px;
+    right: 10px;
+}
+.contenedorChat{
+    height:auto;
+    background-color: white;
+}
