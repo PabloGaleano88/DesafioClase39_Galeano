@@ -58,10 +58,10 @@ class productRepository{
         }
     }
 
-    async updateProductById(id, updateField,value) {
+    async updateProductById(id, updateFields) {
 
         try {
-            await productsModel.findOneAndUpdate({ _id: id }, { $set: { "stock": value } })
+            await productsModel.findOneAndUpdate({ _id: id }, updateFields)
             return this.findProductById(id)
         }
         catch (error) {

@@ -7,5 +7,206 @@ paths:
       responses:
         "200":
           description: Los productos fueron obtenidos satisfactoriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Products'
         "500":
           description: Algo falló en la obtención de productos
+    post:
+      summary: Agrega un producto a la lista de productos.(tener en cuenta que estoy usando multer,por lo tanto, carga la imagen desde la web, no será posible probar desde aquí)
+      tags: 
+        - Products
+      parameters:
+        schema:
+          $type: String
+      requestBody:
+        requiered: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/addProduct'
+      responses:
+        "200":
+          description: El producto fue agregado satisfactoriamente
+          content:
+            application/json:
+              schema:
+                  $ref: '#components/schemas/Products'
+        "500":
+          description: Algo falló al intentar agregar el producto
+  /api/products/{pid}:
+    get:
+      summary: Obtiene un producto según su ID.
+      tags: 
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        requiered: true
+        description: ID del producto a buscar
+        schema:
+          $type: String
+      responses:
+        "200":
+          description: El producto fue encontrado y mostrado satisfactoriamente
+          content:
+            application/json:
+              schema:
+                  $ref: '#components/schemas/Products'
+        "500":
+          description: Algo falló en la obtención del producto
+    put:
+      summary: Cambia el valor del o de los campos que el usuario desee, puede modificar 1 o todos los campos
+      tags: 
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          requiered: true
+          description: ID del producto a buscar
+          schema:
+            $type: String
+      requestBody:
+        requiered: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateProduct'
+      responses:
+        "200":
+          description: El producto fue modificado satisfactoriamente
+          content:
+            application/json:
+              schema:
+                  $ref: '#components/schemas/Products'
+        "500":
+          description: Algo falló al intentar modificar el producto
+    delete:
+      summary: Borra el producto con el ID indicado
+      tags: 
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          requiered: true
+          description: ID del producto a eliminar
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: El producto fue eliminado satisfactoriamente
+        "500":
+          description: Algo falló al intentar eliminar el producto
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado por mongo
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripcion del producto
+        price:
+          type: Number
+          description: Precio del producto
+        code:
+          type: String
+          description: Codigo del producto
+        owner:
+          type: String
+          description: Nombre del creador del producto, por default es 'admin', puede ser el email o 'premium'
+        status:
+          type: Boolean
+          description: Estado del producto
+        category:
+          type: String
+          description: Categoria a la cual pertenece el producto
+        stock:
+          type: Number
+          description: Cantidad de producto en stock
+        thumbnail:
+          type: Array
+          description: Path hacia la imagen del producto
+      example:
+        owner: 'admin'
+        _id: ObjectId("650bc6a39c94bc9faaaac6f3")
+        title: Monitor 27 pulgadas
+        description: Monitor Led de 27 pulgadas
+        price: 150
+        code: MON27LED 
+        status: true
+        category: Monitores
+        stock: 23
+        thumbnail: "[/static/thumbnails/Monitor27.jpg],"
+  requestBodies:
+    addProduct:
+      type: object
+      properties:
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripcion del producto
+        price:
+          type: Number
+          description: Precio del producto
+        code:
+          type: String
+          description: Codigo del producto
+        category:
+          type: String
+          description: Categoria a la cual pertenece el producto
+        stock:
+          type: Number
+          description: Cantidad de producto en stock
+        thumbnail:
+          type: Array
+          description: Path hacia la imagen del producto
+      example:
+        title: Monitor 27 pulgadas
+        description: Monitor Led de 27 pulgadas
+        price: 150
+        code: MON27LED 
+        category: Monitores
+        stock: 23
+        thumbnail: "/static/thumbnails/Monitor27.jpg"
+    updateProduct:
+      type: object
+      properties:
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripcion del producto
+        price:
+          type: Number
+          description: Precio del producto
+        code:
+          type: String
+          description: Codigo del producto
+        category:
+          type: String
+          description: Categoria a la cual pertenece el producto
+        stock:
+          type: Number
+          description: Cantidad de producto en stock
+        thumbnail:
+          type: Array
+          description: Path hacia la imagen del producto
+      example:
+        title: Monitor 27 pulgadas
+        description: Monitor Led de 27 pulgadas
+        price: 150
+        code: MON27LED 
+        category: Monitores
+        stock: 23

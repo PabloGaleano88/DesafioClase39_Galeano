@@ -82,16 +82,17 @@ class ProductManager {
         }
     }
 
-    async updateProduct(id, updateField, value) {
+    async updateProduct(id, updateFields) {
         try {
-            /*          ESTO ES PARA MODIFICAR DESDE THUNDERCLIENT   
-                        const fields = Object.keys(updateFields)
-                        fields.forEach(element => {
-                            if (element !== "title" && element !== "description" && element !== "price" && element !== "code" && element !== "category" && element !== "stock") {
-                                logger.warn(`${element} no es un campo valido por lo tanto no se actualizará`)
-                            }
-                        }); */
-            return await productRepository.updateProductById(id, updateField, value)
+            const fields = Object.keys(updateFields)
+            fields.forEach(async element => {
+                if (element !== "title" && element !== "description" && element !== "price" && element !== "code" && element !== "category" && element !== "stock") {
+                    logger.warn(`${element} no es un campo valido por lo tanto no se actualizará`)
+                }
+                else{
+                    return await productRepository.updateProductById(id, updateFields)
+                }
+            });
         }
         catch (error) {
             logger.error(`se ha producido el siguiente error al intentar modificar el campo: ${error}`)
