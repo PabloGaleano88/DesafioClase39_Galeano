@@ -104,6 +104,10 @@ npm install @faker-js/faker
 ```
 npm install winston
 ```
+### Swagger
+```
+npm install swagger-jsdoc swagger-ui-express
+```
 
 ##
 * Para correr  la aplicación en modo desarrollador se debe escribir en la terminal:
