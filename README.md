@@ -13,11 +13,7 @@
 
 #### What's New
 
-* Se agregó la ruta /loggertest para simular distintos tipos de errores.
-
-* Se agregó la variable ENVIROMENT en .ENV 
-
-* Se cambiaron todos los console.log para que cada uno genere distintos tipos de errores, entre ellos info, warning y error.
+* Se creó la documentación de la API para los endpoints de PRODUCTS y CARTS ingresando en [API DOCS](http://localhost:8080/apidocs)
 
 * Se hicieron los test propuestos.
 ------------------------------------------------------
