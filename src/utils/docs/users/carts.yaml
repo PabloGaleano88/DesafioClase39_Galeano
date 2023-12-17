@@ -1,0 +1,285 @@
+paths:
+  /api/carts:
+    post:
+      summary: Crea un carrito nuevo sin contenido
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrito fue creado satisfactoriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/CartCreationDeletion"
+        "500":
+          description: Algo falló en la creación del carrito
+
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene un carrito según su ID.
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          requiered: true
+          description: ID del carrito a buscar
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: El carrito fue encontrado y mostrado satisfactoriamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Carts"
+        "500":
+          description: Algo falló en la obtención del carrito o el ID no existe
+
+    put:
+      summary: Actualiza el carrito con un arreglo de productos con un formato específico
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          requiered: true
+          description: ID del carrito a modificar
+          schema:
+            $type: String
+      requestBody:
+        requiered: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateProductsOnCart"
+      responses:
+        "200":
+          description: El productos modificados satisfactoriamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Carts"
+        "500":
+          description: Algo falló al intentar modificar los productos
+
+    delete:
+      summary: Elimina todos los prodcutos del carrito indicado
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          requiered: true
+          description: ID del carrito a vaciar
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: El carrito fue vaciado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/CartCreationDeletion"
+        "500":
+          description: Algo falló al intentar eliminar todos los productos
+
+  /api/carts/{cid}/products/{pid}:
+    post:
+      summary: Agrega una unidad de un producto al carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          requiered: true
+          description: ID del carrito al cual se le va a agregar el producto
+          schema:
+            $type: String
+        - name: pid
+          in: path
+          requiered: true
+          description: ID del producto a agregar al carrito
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Producto agregado al carrito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Carts"
+        "500":
+          description: Algo falló al intentar agregar el producto al carrito, verifique que ambos ID son correctos
+
+    put:
+      summary: Actualiza la cantidad en el carrito de un producto determinado
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          requiered: true
+          description: ID del carrito al cual se le va a modificar la cantidad del producto
+          schema:
+            $type: String
+        - name: pid
+          in: path
+          requiered: true
+          description: ID del producto al que se le modificará la cantidad
+          schema:
+            $type: String
+      requestBody:
+        requiered: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateProductQuantity"
+      responses:
+        "200":
+          description: El producto se modificó satisfactoriamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Carts"
+        "500":
+          description: Algo falló al intentar modificar el producto
+    
+    delete:
+      summary: Elimina un producto específico del carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          requiered: true
+          description: ID del carrito al cual se le va a quitar el producto
+          schema:
+            $type: String
+        - name: pid
+          in: path
+          requiered: true
+          description: ID del producto a eliminar
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Producto eliminado
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/ProductDelete"
+        "500":
+          description: Algo falló al intentar eliminar el producto
+
+
+components:
+  ProductDelete:
+    example:
+      _id: "657ded1630847c6e5f5er040"
+      products: [{
+        productId: "650bcd60bfd8b8de589c71e4",
+        quantity: 2,
+        _id: "657e601bc712831e9a3a28b2"},
+        {
+        productId: "651482847f708f4f8039e1fa",
+        quantity: 1,
+        _id: "657e601bc712831e9a3a28b4"
+        }]
+      __v: 0
+  CartCreationDeletion:
+    example:
+      _id: "657ded1630847c6e5f5er040"
+      products: []
+      __v: 0
+  schemas:
+    Carts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado por mongo
+        products:
+          type: Array
+          description: Array que contiene los Id de los productos que se agregan al carrito, luego se realiza un populate que completa los datos
+          productId:
+            type: ObjectId
+            description: Contiene el Id del producto dentro del carrito
+          quantity:
+            type: Number
+            description: Cantidad del producto dentro del carrito
+
+      example:
+        _id: ObjectId("650bc6a39c94bc9faaaac6f3")
+        products:
+          [
+            {
+              productId:
+                {
+                  _id: "651482237f708f4f8039e1f7",
+                  title: "Teclado Genius",
+                  description: "Teclado  de alta calidad para una experiencia de escritura excepcional.",
+                  price: 89.99,
+                  code: "KB001",
+                  status: true,
+                  category: "Perisfericos",
+                  stock: 19,
+                  thumbnail: ["/static/thumbnails/teclado_genius.jpg"],
+                  __v: 0,
+                },
+              quantity: 7,
+            },
+            {
+              productId:
+                {
+                  _id: "651482237f708fghy039e1f7",
+                  title: "Mouse Genius",
+                  description: "Mouse óptico de alta resolución para una mayor productividad.",
+                  price: 24.99,
+                  code: "MOPT002",
+                  status: true,
+                  category: "Perisfericos",
+                  stock: 53,
+                  thumbnail: ["/static/thumbnails/mouse_genius.jpg"],
+                  __v: 0,
+                },
+              quantity: 22,
+            },
+          ]
+
+  requestBodies:
+    updateProductsOnCart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id indicado a modificar
+        products:
+          type: Array
+          description: Array que contiene los Id de los productos que se agregan al carrito, luego se realiza un populate que completa los datos
+          productId:
+            type: ObjectId
+            description: Contiene el Id del producto dentro del carrito
+          quantity:
+            type: Number
+            description: Cantidad del producto dentro del carrito
+      example:
+        [
+          { productId: "650bcd60bfd8b8de589c71e4", quantity: 2 },
+          { productId: "650bc6a39c94bc9f1651c6f3", quantity: 3 },
+          { productId: "651482847f708f4f8039e1fa", quantity: 1 },
+        ]
+
+    updateProductQuantity:
+      quantity:
+        type: Number
+        description: Cantidad del producto dentro del carrito
+      example:
+          {quantity: 22 }
+

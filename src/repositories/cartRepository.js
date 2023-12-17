@@ -22,7 +22,7 @@ class CartRepository {
             return cart
         }
         catch (e) {
-            return ("ID del carrito no encontrado")
+            throw e
         }
     }
 
@@ -79,23 +79,36 @@ class CartRepository {
     }
 
     async removeAllProductsFromCart(cartId) {
-        const cart = await cartsModel.findById(cartId)
-        cart.products = []
-        await cart.save()
-        return cart
-    }
-
-    async updateProducts(cartId, productUpdate) {
-        try {
+        try{
             const cart = await cartsModel.findById(cartId)
-            await this.removeAllProductsFromCart(cartId)
-            cart.products.push(productUpdate)
+            cart.products = []
             await cart.save()
-            const cartUpdated = await cartsModel.findById(cartId)
-            return cartUpdated
+            return cart
         }
-        catch (e) {
-            return (`Ocurrió un error al intentar realizar la actualización, los datos ingresador \n${e.name}\n${e.message}`)
+        catch(e){
+            return("Ocurrió un error al intentar vaciar el carrito",e)
+        }
+    }
+    
+    async updateProducts(cartId, productsUpdate) {
+        try {
+            const cart = await cartsModel.findById(cartId);
+    
+            for (const productUpdate of productsUpdate) {
+                const { productId, quantity } = productUpdate;
+                const productInCart = cart.products.find(({ productId: id }) => id.toString() === productId);
+                if (productInCart) {
+                    productInCart.quantity = quantity;
+                } else {
+                    cart.products.push({ productId, quantity });
+                }
+            }
+    
+            await cart.save();
+            const cartUpdated = await this.findCartById(cartId);
+            return cartUpdated;
+        } catch (e) {
+            return (`Ocurrió un error al intentar realizar la actualización, los datos ingresados\n${e.name}\n${e.message}`);
         }
     }
 

@@ -7,57 +7,88 @@ const cartManager = new CartManager
 const productManager = new ProductManager
 
 export const addCart = async (req, res) => {
-    const result = await cartManager.addCart()
-    res.status(200).send(result)
+    try {
+        const result = await cartManager.addCart()
+        res.status(200).send(result)
+    }
+    catch (error) {
+        res.status(500).send(error)
+    }
 }
 
 export const getCartById = async (req, res) => {
-    const cid = req.params.cid
-    const cartById = await cartManager.findCartById(cid)
-    res.status(200).send(cartById)
+    try {
+        const cid = req.params.cid
+        const cartById = await cartManager.findCartById(cid)
+        res.status(200).send(cartById)
+    }
+    catch (error) {
+        res.status(500).send(error)
+    }
 }
 
 export const addProductToCart = async (req, res) => {
-    let result = ""
-    const cid = req.params.cid
-    const pid = req.params.pid
-    const product = await productManager.findById(pid)
-    if(req.user.email !== product.owner){
-        result = await cartManager.addProductToCart(cid, pid, 1)
-        res.status(200).send(result)
+    try {
+        let result = ""
+        const cid = req.params.cid
+        const pid = req.params.pid
+        const product = await productManager.findById(pid)
+        if (req.user.email !== product.owner) {
+            result = await cartManager.addProductToCart(cid, pid, 1)
+            res.status(200).send(result)
+        }
+        else {
+            result = "No se pude agregar un producto que tu mismo creaste"
+            res.status(403).send(result)
+        }
     }
-    else{
-        result = "No se pude agregar un producto que tu mismo creaste"
-        res.status(403).send(result)
+    catch (error) {
+        res.status(500).send(error)
     }
 }
 
 export const updateProducts = async (req, res) => {
-    const cid = req.params.cid
-    const productUpdate = req.body
-    const result = await cartManager.updateProducts(cid, productUpdate)
-    res.status(200).send(result)
+    try{
+        const cid = req.params.cid
+        const productUpdate = req.body
+        const result = await cartManager.updateProducts(cid, productUpdate)
+        res.status(200).send(result)
+    }
+    catch(error){
+        res.status(500).send(error)}
 }
 
 export const updateProductQuantity = async (req, res) => {
-    const cid = req.params.cid
-    const pid = req.params.pid
-    const { quantity } = req.body
-    const result = await cartManager.updateProductQuantity(cid, pid, quantity)
-    res.status(200).send(result)
+    try{
+        const cid = req.params.cid
+        const pid = req.params.pid
+        const { quantity } = req.body
+        const result = await cartManager.updateProductQuantity(cid, pid, quantity)
+        res.status(200).send(result)
+    }
+    catch(error){
+        res.status(500).send(error)}
 }
 
 export const removeProductFromCart = async (req, res) => {
-    const cid = req.params.cid
-    const pid = req.params.pid
-    const result = await cartManager.removeProductFromCart(cid, pid)
-    res.status(200).send(result)
+    try{
+        const cid = req.params.cid
+        const pid = req.params.pid
+        const result = await cartManager.removeProductFromCart(cid, pid)
+        res.status(200).send(result)
+    }
+    catch(error){
+        res.status(500).send(error)}
 }
 
 export const removeAllProductsFromCart = async (req, res) => {
-    const cid = req.params.cid
-    const result = await cartManager.removeAllProductsFromCart(cid)
-    res.status(200).send(result)
+    try{
+        const cid = req.params.cid
+        const result = await cartManager.removeAllProductsFromCart(cid)
+        res.status(200).send(result)
+    }
+    catch(error){
+        res.status(500).send(error)}
 }
 
 export const purchase = async (req, res) => {
